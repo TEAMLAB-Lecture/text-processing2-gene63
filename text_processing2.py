@@ -28,7 +28,34 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    only_number = []
+    eng_number = []
+    for c in input_string:
+        if c.isdigit():
+            only_number.append(c)
+    for n in only_number:
+        if n == '0':
+            eng_number.append('zero')
+        elif n == '1':
+            eng_number.append('one')
+        elif n == '2':
+            eng_number.append('two')
+        elif n == '3':
+            eng_number.append('three')
+        elif n == '4':
+            eng_number.append('four')
+        elif n == '5':
+            eng_number.append('five')
+        elif n == '6':
+            eng_number.append('six')
+        elif n == '7':
+            eng_number.append('seven')
+        elif n == '8':
+            eng_number.append('eight')
+        elif n == '9':
+            eng_number.append('nine')
+        
+    digit_string = ' '.join(eng_number)
     return digit_string
 
 
@@ -64,5 +91,17 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    if '_' not in underscore_str:
+        return underscore_str
+    tokens = underscore_str.split('_')
+    capitalized_tokens = []
+    while '' in tokens:
+        tokens.remove('')
+    # print(tokens)
+    for i, t in enumerate(tokens):
+        if i == 0:
+            capitalized_tokens.append(t.lower())
+        else:
+            capitalized_tokens.append(t.lower().capitalize())
+    camelcase_str = ''.join(capitalized_tokens)
     return camelcase_str
